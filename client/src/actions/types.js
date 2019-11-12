@@ -1,0 +1,7 @@
+export const GET_ITEMS = 'GET_ITEMS';
+export const ADD_ITEM = 'ADD_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const OPEN_ADD_ITEM_DIALOG = 'OPEN_ADD_ITEM_DIALOG';
+export const CLOSE_ADD_ITEM_DIALOG = 'CLOSE_ADD_ITEM_DIALOG';
+export const ITEMS_LOADING = 'ITEMS_LOADING';
