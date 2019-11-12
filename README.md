@@ -3,7 +3,7 @@ Is a react app that does basically Creating, Retrieving and Deleting list of ite
 
 Live Demo (https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Most Important Scripts
 
 In the project directory, you can run:
 
