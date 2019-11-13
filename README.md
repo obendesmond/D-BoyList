@@ -1,7 +1,7 @@
 ## D-BoyList
 Is a react app that does basically Creating, Retrieving and Deleting list of items. It comes with react-redux boiler plate setup with some basic backend services that you can build on. You can use this project to start a basic MERN STACK APP, as i said it comes with redux boiler-plate and a server.
 
-Live Demo (https://github.com/facebook/create-react-app).
+VIEW [Live Demo](https://d-boylist.herokuapp.com/).
 
 ## Most Important Scripts
 
@@ -24,4 +24,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Demo
 
-You can view the app live [here](https://)
+You can view the app live [here](https://d-boylist.herokuapp.com/)
