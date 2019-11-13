@@ -14,11 +14,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 
 import { connect } from "react-redux";
-import {
-  getItems,
-  deleteItem,
-  removeItem
-} from "../actions/ItemActions";
+import { getItems, deleteItem, removeItem } from "../actions/ItemActions";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
@@ -58,6 +54,9 @@ function ShoppingList(props) {
   return (
     <div className={classes.root}>
       <Container maxWidth="md">
+        <center>
+          <h1>Add Some Thing.</h1>
+        </center>
         <List component="nav" aria-label="main mailbox folders">
           {props.items.map((item, index) => (
             <Grow
@@ -104,7 +103,6 @@ const mapStateToProps = state => ({
   items: state.ItemReducer.items,
   deletedItemId: state.ItemReducer.deletedItemId
 });
-export default connect(
-  mapStateToProps,
-  { getItems, deleteItem, removeItem }
-)(ShoppingList);
+export default connect(mapStateToProps, { getItems, deleteItem, removeItem })(
+  ShoppingList
+);
