@@ -1,3 +1,4 @@
 module.exports = {
-    mongoURI:"mongodb://localhost:27017/shopping_list"
+    mongoURILocal:"mongodb://localhost:27017/shopping_list",
+    mongoURI:"mongodb+srv://obendesmond:obendesmond@cluster0-ztkhd.mongodb.net/test?retryWrites=true&w=majority"
 }
