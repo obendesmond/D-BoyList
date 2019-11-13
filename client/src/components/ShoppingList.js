@@ -64,7 +64,7 @@ function ShoppingList(props) {
               key={index}
               direction="up"
               in={props.deletedItemId !== item._id}
-              {...(showList ? { timeout: 500 } : {})}
+              {...(showList ? { timeout: 400 } : {})}
               onExited={() => handleDelete(item._id)}
             >
               <Paper className={classes.listItem}>
