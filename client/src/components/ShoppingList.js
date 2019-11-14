@@ -41,7 +41,7 @@ function ShoppingList(props) {
 
   useEffect(() => {
     props.getItems();
-  }, [props]);
+  }, []);
 
   const handleDelete = id => {
     props.deleteItem(id);
@@ -55,7 +55,9 @@ function ShoppingList(props) {
     <div className={classes.root}>
       <Container maxWidth="md">
         <center>
-          <h1>Add Some Thing.</h1>
+          <h1>
+            {props.user ? "'" + props.user.name + "'" : null} Add Some Thing.
+          </h1>
         </center>
         <List component="nav" aria-label="main mailbox folders">
           {props.items.map((item, index) => (
@@ -96,12 +98,14 @@ ShoppingList.propTypes = {
   deleteItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   items: PropTypes.array,
-  deletedItemId: PropTypes.string
+  deletedItemId: PropTypes.string,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   items: state.ItemReducer.items,
-  deletedItemId: state.ItemReducer.deletedItemId
+  deletedItemId: state.ItemReducer.deletedItemId,
+  user: state.AuthReducer.user
 });
 export default connect(mapStateToProps, { getItems, deleteItem, removeItem })(
   ShoppingList

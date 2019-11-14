@@ -8,6 +8,9 @@ import {
   ITEMS_LOADING
 } from "./types";
 import axios from "axios";
+import { tokenConfig } from "./AuthActions";
+import { returnErrors } from "./ErrorActions";
+import { openLoginForm } from "./LoginActions";
 
 // get all items
 export const getItems = () => dispatch => {
@@ -20,40 +23,53 @@ export const getItems = () => dispatch => {
         payload: res.data
       })
     )
-    .catch(err => console.log(err));
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 // add item
-export const addItem = item => dispatch => {
+export const addItem = item => (dispatch, getState) => {
   axios
-    .post("/api/items", item)
+    .post("/api/items", item, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: ADD_ITEM,
         payload: res.data
       })
     )
-    .catch(err => console.log(err));
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 // delete item
-export const deleteItem = id => dispatch => {
+export const deleteItem = id => (dispatch, getState) => {
   axios
-    .delete(`/api/items/${id}`)
+    .delete(`/api/items/${id}`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: DELETE_ITEM,
         id
       });
     })
-    .catch(err => console.error(err));
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
+
 // remove item
-export const removeItem = id => dispatch => {
-  dispatch({
-    type: REMOVE_ITEM,
-    id
-  });
+export const removeItem = id => (dispatch, getState) => {
+  const isAuthenticated = getState().AuthReducer.isAuthenticated;
+
+  if (isAuthenticated === true) {
+    dispatch({
+      type: REMOVE_ITEM,
+      id
+    });
+  } else {
+    dispatch(openLoginForm());
+  }
 };
 
 // dialog

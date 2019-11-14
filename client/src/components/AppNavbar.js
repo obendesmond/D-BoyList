@@ -3,14 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AddIcon from "@material-ui/icons/Add";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { openItemDialog } from "../actions/ItemActions";
-import AddItem from './AddItem';
+import AddItem from "./AddItem";
+import Register from "./auth/Register";
+import Login from "./auth/Login";
+import Logout from "./auth/Logout";
+import dboy from "../assets/dboy.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,63 +17,38 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "row"
   },
-  Btn: {
-    marginRight: theme.spacing(2)
-  },
-  BtnIcon: {
-    marginRight: theme.spacing(2),
-    color: "white"
+  link: {
+    marginRight: theme.spacing(4)
   }
 }));
 
 function AppNavbar(props) {
   const classes = useStyles();
-  const handleOpenDialog = () => {
-    props.openItemDialog();
-  }
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Shopping List
+            <img
+              style={{ width: "30px", height: "auto", marginRight: "20px" }}
+              src={dboy}
+              alt="dboy"
+            />
+            List
           </Typography>
-          <Button onClick={handleOpenDialog} className={classes.BtnIcon} >
-            <AddIcon />
-          </Button>
-          <Button className={classes.Btn} color="inherit">
-            Login
-          </Button>
-          <Button className={classes.Btn} color="inherit">
-            Register
-          </Button>
+          <AddItem className={classes.link} />
+          <Login className={classes.link} />
+          <Logout className={classes.link} />
+          <Register className={classes.link} />
         </Toolbar>
       </AppBar>
-      <AddItem />
     </div>
   );
 }
 
-AppNavbar.propTypes = {
-  addItemDialog: PropTypes.bool,
-  openItemDialog: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  addItemDialog: state.ItemReducer.addItemDialog
-});
-export default connect(
-  mapStateToProps,
-  { openItemDialog }
-)(AppNavbar);
+export default AppNavbar;
