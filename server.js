@@ -10,10 +10,11 @@ const app = express();
 app.use(bodyParser.json());
 
 // DB config
-const db =
+/*const db =
   process.env.NODE_ENV === "production"
     ? config.get("mongoURI")
-    : "mongodb://localhost:27017/shopping_list";
+    : "mongodb://localhost:27017/shopping_list";*/
+const db = config.get("mongoURI");
 
 // connection to mongodb
 mongoConfig = {
